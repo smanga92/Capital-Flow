@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Capital Flow Trading Assistant - Daily scenario analysis">
+    <title>Capital Flow Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📊 Capital Flow Tracker</h1>
+                <p class="subtitle">Daily Market Regime Analysis</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="card input-section">
+                <h2>Today's Market Reading</h2>
+                <p class="section-subtitle">Enter today's directional bias for each asset</p>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="btc">BTC (Bitcoin)</label>
+                        <select id="btc" class="input-select">
+                            <option value="">Select...</option>
+                            <option value="up">↑ Rising</option>
+                            <option value="down">↓ Falling</option>
+                            <option value="flat">→ Flat/Choppy</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="gold">Gold</label>
+                        <select id="gold" class="input-select">
+                            <option value="">Select...</option>
+                            <option value="up">↑ Rising</option>
+                            <option value="down">↓ Falling</option>
+                            <option value="flat">→ Flat/Choppy</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="usdjpy">USDJPY</label>
+                        <select id="usdjpy" class="input-select">
+                            <option value="">Select...</option>
+                            <option value="up">↑ Rising</option>
+                            <option value="down">↓ Falling</option>
+                            <option value="flat">→ Flat/Choppy</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="eurusd">EURUSD</label>
+                        <select id="eurusd" class="input-select">
+                            <option value="">Select...</option>
+                            <option value="up">↑ Rising</option>
+                            <option value="down">↓ Falling</option>
+                            <option value="flat">→ Flat/Choppy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="analyzeBtn" class="btn-primary">Analyze Market</button>
+            </section>
+
+            <!-- Results Section -->
+            <div id="resultsContainer" style="display: none;">
+                <!-- Current Scenario -->
+                <section class="card scenario-section">
+                    <div class="scenario-header">
+                        <h2>Current Scenario</h2>
+                        <span id="confidenceBadge" class="confidence-badge"></span>
+                    </div>
+                    <div id="scenarioResult" class="scenario-result"></div>
+                </section>
+
+                <!-- Trade Suggestions -->
+                <section class="card trades-section">
+                    <h2>Trade Suggestions</h2>
+                    <div id="tradesSuggestions" class="trades-grid"></div>
+                </section>
+
+                <!-- Regime Context -->
+                <section class="card context-section">
+                    <h2>Regime Context</h2>
+                    <div id="regimeContext" class="context-content"></div>
+                </section>
+
+                <!-- Transition Alert -->
+                <section id="transitionSection" class="card transition-section" style="display: none;">
+                    <h2>⚠️ Possible Transition Detected</h2>
+                    <div id="transitionAlert" class="transition-content"></div>
+                </section>
+            </div>
+
+            <!-- History Section -->
+            <section class="card history-section">
+                <div class="history-header">
+                    <h2>30-Day History</h2>
+                    <button id="clearHistoryBtn" class="btn-secondary">Clear All</button>
+                </div>
+                <div id="historyContainer" class="history-container"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Capital Flow Tracker © 2026 | Data stored locally in your browser</p>
+        </footer>
+    </div>
+
+    <script src="scenarios.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
