@@ -15,9 +15,40 @@ class CapitalFlowApp {
         // Load history display
         this.displayHistory();
         
+        // Auto-load today's analysis if it exists
+        this.loadTodaysAnalysis();
+        
         // Service worker registration for PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
+    }
+
+    loadTodaysAnalysis() {
+        const today = new Date().toISOString().split('T')[0];
+        const todaysEntry = this.history.find(h => h.date === today);
+        
+        if (todaysEntry) {
+            // Populate the input fields
+            document.getElementById('btc').value = todaysEntry.btc;
+            document.getElementById('gold').value = todaysEntry.gold;
+            document.getElementById('usdjpy').value = todaysEntry.usdjpy;
+            document.getElementById('eurusd').value = todaysEntry.eurusd;
+            
+            // Re-run analysis to show results
+            const input = {
+                btc: todaysEntry.btc,
+                gold: todaysEntry.gold,
+                usdjpy: todaysEntry.usdjpy,
+                eurusd: todaysEntry.eurusd
+            };
+            
+            const matches = this.matchScenarios(input);
+            this.displayResults(matches, input);
+            this.checkTransitions(matches.bestMatch);
+            
+            // Show results container
+            document.getElementById('resultsContainer').style.display = 'block';
         }
     }
 
